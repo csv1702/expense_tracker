@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - OneStack Tracker</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .card-header {
+            background: #fff;
+            border-bottom: none;
+            padding-top: 30px;
+            text-align: center;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 12px;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+        }
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 15px;
+            background-color: #f4f6f9;
+            border: 1px solid #eee;
+        }
+        .form-control:focus {
+            background-color: #fff;
+            border-color: #764ba2;
+            box-shadow: none;
+        }
+        .input-group-text {
+            border: none;
+            background: #f4f6f9;
+            color: #888;
+            border-radius: 10px 0 0 10px;
+        }
+        .logo-icon {
+            font-size: 3rem;
+            background: -webkit-linear-gradient(#667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-lg-4">
+                
+                <div class="card p-4">
+                    <div class="card-header">
+                        <i class="fas fa-wallet logo-icon mb-2"></i>
+                        <h4 class="fw-bold text-dark mt-2">Welcome Back</h4>
+                        <p class="text-muted small">Login to manage your expenses</p>
+                    </div>
+                    
+                    <div class="card-body">
+                        <?php if($this->session->flashdata('error')): ?>
+                            <div class="alert alert-danger py-2 text-center small rounded-3 border-0 bg-danger bg-opacity-10 text-danger">
+                                <i class="fas fa-exclamation-circle me-1"></i> <?= $this->session->flashdata('error'); ?>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <?php if($this->session->flashdata('success')): ?>
+                            <div class="alert alert-success py-2 text-center small rounded-3 border-0 bg-success bg-opacity-10 text-success">
+                                <i class="fas fa-check-circle me-1"></i> <?= $this->session->flashdata('success'); ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?= form_open('auth/login'); ?>
+                            
+                            <div class="mb-3">
+                                <label class="form-label small text-muted fw-bold ms-1">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" name="email" class="form-control" placeholder="name@example.com" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label small text-muted fw-bold ms-1">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                                </div>
+                            </div>
+
+                            <div class="d-grid mb-3">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+
+                        <?= form_close(); ?>
+
+                        <div class="text-center mt-3">
+                            <p class="small text-muted mb-0">Don't have an account?</p>
+                            <a href="<?= base_url('auth/register'); ?>" class="fw-bold text-decoration-none" style="color: #764ba2;">Create Account</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
